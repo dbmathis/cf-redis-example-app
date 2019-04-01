@@ -37,22 +37,22 @@ get '/:key' do
   end
 end
 
-get '/config/:item' do
-  unless params[:item]
+get '/info/:info' do
+  unless params[:info]
     status 400
-    body 'USAGE: GET /config/:item'
+    body 'USAGE: GET /info/:info'
     return
   end
 
-  value = redis_client.config('get', params[:item])
-  if value.length < 2
-    status 404
-    body "config item #{params[:item]} not found"
-    return
+  value = redis_client.info(params[:info])
+  if value
+    status 200
+    body value
+  
+  else
+    status 400
+    body USAGE: 'GET /info/:info'
   end
-
-  status 200
-  body value[1]
 end
 
 delete '/:key' do
