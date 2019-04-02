@@ -1,5 +1,11 @@
 #!/bin/sh
 # Use example app restful API to test different scenarios with redis instances
+# 
+# Info of interest
+#
+# curl -sX GET $APP/info/memory/used_memory                                                                                                                                              # curl -sX GET $APP/info/memory/maxmemory
+# curl -sX GET $APP/info/stats/evicted_keys
+
 
 export APP=redis-example-app.cfapps-17.haas-59.pez.pivotal.io
 
