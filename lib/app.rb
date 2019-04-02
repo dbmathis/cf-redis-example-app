@@ -37,17 +37,17 @@ get '/:key' do
   end
 end
 
-get '/info/:info' do
-  unless params[:info]
+get '/info/:info/:key' do
+  unless params[:info] && params[:key]
     status 400
-    body 'USAGE: GET /info/:info'
+    body 'USAGE: GET /info/:info/:key'
     return
   end
 
   value = redis_client.info(params[:info])
   if value
     status 200
-    body value
+    body value[params[:key]]
   
   else
     status 400

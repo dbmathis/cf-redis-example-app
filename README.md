@@ -1,8 +1,8 @@
-# CF Redis Example App [![Build Status](https://travis-ci.org/pivotal-cf/cf-redis-example-app.svg)](https://travis-ci.org/pivotal-cf/cf-redis-example-app)
+# CF Redis Example App
 
 This app is an example of how you can consume a Cloud Foundry service within an app.
 
-It allows you to set, get and delete Redis key/value pairs using RESTful endpoints.
+It allows you to set, get and delete Redis key/value pairs using RESTful endpoints. I've expanded this example to include fetching info from redis.
 
 ### Getting Started
 
@@ -12,7 +12,7 @@ Install the app by pushing it to your Cloud Foundry and binding with the Pivotal
 
 Example:
 
-     $ git clone git@github.com:pivotal-cf/cf-redis-example-app.git
+     $ git clone git@github.com:dbmathis/cf-redis-example-app.git
      $ cd cf-redis-example-app
      $ cf push redis-example-app --no-start
      $ cf create-service p-redis dedicated-vm redis
@@ -27,7 +27,7 @@ You will need to sign up for [redis-as-a-service](https://redislabs.com/) and th
 
 Example:
 
-     $ git clone git@github.com:pivotal-cf/cf-redis-example-app.git
+     $ git clone git@github.com:dbmathis/cf-redis-example-app.git
      $ cd cf-redis-example-app
      $ cf push redis-example-app --no-start
      $ cf cups redis -p "host, password, port"
@@ -59,9 +59,9 @@ Deletes a Redis key spcified by the path. Example:
     $ curl -X DELETE $APP/foo
     success
 
-#### GET /config/:item
+#### GET /info/:secton/:key
 
 Returns the Redis configuration value at the key specified by the path. Example:
 
-    $ curl -X GET $APP/config/max_clients
-    100
+    $ curl -X GET $APP/info/memory/used_memory_human
+    363.57K
